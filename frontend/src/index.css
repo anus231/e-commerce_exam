@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* ── Rwanda Flag Palette ──────────────────────────────────────────
+     Green  #009A44  (lower band — growth, prosperity)
+     Blue   #20AFCD  (upper band — peace, happiness)
+     Gold   #FAD201  (sun & stripe — economic development)
+  ─────────────────────────────────────────────────────────────────── */
+
+  /* Primary — Rwanda Green */
+  --primary-h: 148;
+  --primary-s: 100%;
+  --primary-l: 30%;
+  --primary: hsl(var(--primary-h), var(--primary-s), var(--primary-l));       /* #009A44 */
+  --primary-hover: hsl(var(--primary-h), var(--primary-s), calc(var(--primary-l) - 6%));
+  --primary-light: hsl(var(--primary-h), 60%, 95%);                           /* pale green tint */
+
+  /* Secondary — Rwanda Sky Blue */
+  --secondary-h: 194;
+  --secondary-s: 72%;
+  --secondary-l: 46%;
+  --secondary: hsl(var(--secondary-h), var(--secondary-s), var(--secondary-l)); /* #20AFCD */
+  --secondary-hover: hsl(var(--secondary-h), var(--secondary-s), calc(var(--secondary-l) - 6%));
+
+  /* Accent — Rwanda Sunshine Gold */
+  --accent-h: 50;
+  --accent-s: 97%;
+  --accent-l: 50%;
+  --accent: hsl(var(--accent-h), var(--accent-s), var(--accent-l));            /* #FAD201 */
+
+  /* Neutrals */
+  --dark: hsl(160, 20%, 10%);            /* Deep green-tinted charcoal */
+  --light: hsl(148, 18%, 97%);           /* Barely-there green-white */
+  --border: hsl(148, 12%, 88%);
+  --text-main: hsl(160, 20%, 15%);
+  --text-muted: hsl(160, 8%, 48%);
+
+  --shadow-sm: 0 2px 4px rgba(0, 154, 68, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 154, 68, 0.07);
+  --shadow-lg: 0 16px 40px rgba(0, 154, 68, 0.12);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--light);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--dark);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Imigongo Traditional Patterns (Generated using repeating linear gradients) */
+.imigongo-pattern {
+  background-color: var(--light);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0, 0, 0, 0.03) 20px, rgba(0, 0, 0, 0.03) 40px),
+                    repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(0, 0, 0, 0.03) 20px, rgba(0, 0, 0, 0.03) 40px);
+}
+
+.imigongo-accent-border {
+  height: 8px;
+  background: repeating-linear-gradient(90deg,
+    var(--primary)  0px,  var(--primary)  20px,
+    var(--accent)  20px,  var(--accent)   35px,
+    var(--secondary) 35px, var(--secondary) 55px,
+    var(--accent)  55px,  var(--accent)   70px
+  );
+  width: 100%;
+}
+
+.imigongo-hero {
+  position: relative;
+  background: linear-gradient(160deg, hsl(160, 20%, 10%) 0%, hsl(148, 60%, 15%) 100%);
+  color: var(--light);
+  overflow: hidden;
+}
+
+.imigongo-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: repeating-linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 15px,
+    transparent 15px, transparent 30px
+  );
+  opacity: 0.8;
+}
+
+/* Glassmorphism Classes */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: var(--shadow-sm);
+}
+
+.glass-dark {
+  background: rgba(26, 28, 32, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--light);
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.grid-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--dark);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  transition: var(--transition);
+  background-color: white;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+}
+
+.form-error {
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* Button UI Components */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  gap: 8px;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(21, 94, 69, 0.2);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--dark);
+  color: var(--dark);
+}
+
+.btn-outline:hover {
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+.btn-text {
+  background-color: transparent;
+  color: var(--primary);
+  padding: 8px 12px;
+}
+
+.btn-text:hover {
+  color: var(--primary-hover);
+  background-color: var(--primary-light);
+}
+
+.btn-disabled {
+  background-color: #e5e7eb !important;
+  color: #9ca3af !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Badge styles */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.badge-primary {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.badge-success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.badge-warning {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+/* Header & Navigation */
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+/* Card Transitions */
+.card-hover {
+  transition: var(--transition);
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Micro-animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Slide in panel */
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .grid-products {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+  }
+  .container {
+    padding: 0 16px;
+  }
+}
