@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-const sqlite3 = require('sqlite3').verbose();
+
 const path = require('path');
 const fs = require('fs');
 
@@ -23,7 +23,9 @@ if (process.env.DB_HOST || process.env.DATABASE_URL) {
   pgPool = new Pool(config);
   console.log('Database connected: PostgreSQL');
 } else {
+  const sqlite3 = require('sqlite3').verbose();
   dbType = 'sqlite';
+
   const dbPath = path.join(__dirname, '..', 'database.db');
   const dbExists = fs.existsSync(dbPath);
   
